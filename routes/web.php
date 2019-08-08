@@ -12,12 +12,12 @@
 */
 
 Route::get('/', [
-    'uses' => 'FrontendController@index',
+    'uses' => 'FrontEndController@index',
     'as' => 'index'
 ]);
 
 Route::get('/product/{product}',[
-    'uses' => 'FrontendController@singleProduct',
+    'uses' => 'FrontEndController@singleProduct',
     'as' => 'product.single'
 ]);
 
