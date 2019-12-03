@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Http\Requests\CreateProductRequest;
+use Session;
 
 class ProductsController extends Controller
 {
@@ -47,18 +48,19 @@ class ProductsController extends Controller
      */
     public function store(CreateProductRequest $request)
     {
-
+        $image = $request->image;
+        $image_new_name = time().$image->getClientOriginalName();
+        $image->move('uploads/products/',$image_new_name);
 
         $product = Product::create([
             'name' => $request->name,
             'description' => $request->description,
-            'price' => $request->price
+            'price' => $request->price,
+            'image' => 'uploads/products/'.$image_new_name
         ]);
 
-        $image = $request->image;
-        
-
-
+        Session::flash('success','Product created successfully');
+        return redirect(route('products.index'));
     }
 
     /**

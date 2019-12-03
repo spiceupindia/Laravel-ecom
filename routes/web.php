@@ -51,7 +51,7 @@ Route::get('/cart/delete/{id}',[
     'as' => 'cart.delete'
 ]);
 
-Route::get('/cart/checkout',[
+Route::get('/cart/checkout/{id}',[
     'uses' => 'CheckoutController@index',
     'as' => 'cart.checkout'
 ]);

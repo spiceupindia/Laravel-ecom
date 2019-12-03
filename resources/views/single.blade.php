@@ -17,25 +17,24 @@
                         </div>
                     </div>
                 </div>
-    
-    
+
+
                 <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-6 col-sm-offset-1 col-xs-12 col-xs-offset-0">
                     <div class="product-details-info">
                         <div class="product-details-info-price">${{ $product->price }}</div>
                         <h3 class="product-details-info-title">{{ $product->name }}</h3>
-                        <p class="product-details-info-text">{{ $product->description }}
-                        </p>
-    
+                        <p class="product-details-info-text">{{ $product->description }}</p>
+
                     <form action="{{ route('cart.add') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="quantity">
                             <a href="#" class="quantity-minus quantity-minus-d">-</a>
-                            <input title="Qty" class="email input-text qty text" name="qty" type="text" value="2">
+                                <input title="Qty" class="email input-text qty text" name="qty" type="text" value="2">
                             <a href="#" class="quantity-plus quantity-plus-d">+</a>
                         </div>
 
                         <input type="hidden" name="prd_id" value="{{ $product->id }}">
-    
+
                         <button type="submit" class="btn btn-medium btn--primary">
                             <span class="text">Add to Cart</span>
                             <i class="seoicon-commerce"></i>

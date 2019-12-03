@@ -71,7 +71,7 @@ class ShoppingController extends Controller
     public function cart_delete($id){
 
         Cart::remove($id);
-        
+
         Session::flash('success', 'Product removed');
          return redirect()->back();
 

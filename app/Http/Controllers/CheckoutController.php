@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
-    public function index(){ 
+    public function index($id){
+
         return view('checkout');
     }
 
@@ -20,21 +21,16 @@ class CheckoutController extends Controller
 
         //set the stripe secret api key
         Stripe::setApiKey("sk_test_fVV0woA6z7j6SVZTnMVDRmVP");
-      
 
         //get the token and make charge
         $token = request()->stripeToken;
-       // dd($token);
 
         $charge = Charge::create([
             'amount' => Cart::total() * 100,
             'currency' => 'usd',
-            'description' => 'laravel stripe demo',
+            'description' => 'laravel stripe payment',
             'source' => $token,
         ]);
-        //dd($charge);
-
-
 
         //Session success message
         Session::flash('success', 'Purchased successfully');
@@ -44,6 +40,6 @@ class CheckoutController extends Controller
 
         Mail::to(request()->stripeEmail)->send(new PurchaseSuccessful);
         return redirect('/');
-        
+
     }
 }
